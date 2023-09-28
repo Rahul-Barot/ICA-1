@@ -42,11 +42,17 @@ def test_model_training(cifar10_data, cifar10_model):
     _, accuracy = cifar10_model.evaluate(x_test, y_test)
     assert accuracy > 0.7  # Adjust as needed
 
+# def test_model_prediction(cifar10_model):
+#     # Generate a random test image for prediction
+#     test_image = np.random.rand(32, 32, 3)
+#     predicted_class = predict_image(cifar10_model, test_image)
+#     assert 0 <= predicted_class < 10
 def test_model_prediction(cifar10_model):
     # Generate a random test image for prediction
-    test_image = np.random.rand(32, 32, 3)
+    test_image = np.random.rand(1, 32, 32, 3)  # Add an extra dimension for batch size
     predicted_class = predict_image(cifar10_model, test_image)
     assert 0 <= predicted_class < 10
+
 
 if __name__ == '__main__':
     pytest.main()

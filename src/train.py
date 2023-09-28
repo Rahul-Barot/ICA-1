@@ -1,6 +1,12 @@
 import tensorflow as tf
-from .data_preparation import load_cifar10_data
-from .model import create_cnn_model
+import sys
+import os
+
+# Add the project's root directory to sys.path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+from src.data_preparation import load_cifar10_data
+from src.model import create_cnn_model
 
 def train_model(model, x_train, y_train, epochs=1, batch_size=64):
 
