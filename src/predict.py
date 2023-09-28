@@ -34,7 +34,7 @@ def predict_image(cifar10_model, image_path):
     # Make sure the image size matches the input shape of the model
     # Load an image for prediction (you need to specify the image path)
     # Make sure the image size matches the input shape of the model
-    image_path = "src\gfx100s_sample_04_thum-1.jpg"
+    image_path = "Image/gfx100s_sample_04_thum-1.jpg"
 
     # Load and preprocess the image
     img = keras_image.load_img(image_path, target_size=(32, 32))  # Adjust the target size as needed
