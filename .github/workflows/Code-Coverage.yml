@@ -18,14 +18,14 @@ jobs:
       with:
         python-version: 3.10.9  # Replace with your desired Python version
 
-    - name: upgrade python
-      run: python3 -m pip install --upgrade pip
+    # - name: upgrade python
+    #   run: python3 -m pip install --upgrade pip
 
     - name: Install dependencies
       run: pip install -r requirements.txt
 
-    - name: upgrade tensorflow 
-      run: pip install --upgrade tensorflow
+    # - name: upgrade tensorflow 
+    #   run: pip install --upgrade tensorflow
 
     - name: install coverage
       run: pip install coverage 
