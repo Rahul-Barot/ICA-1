@@ -1,10 +1,17 @@
 import pytest
 import tensorflow as tf
 import numpy as np
-from data_preparation import load_cifar10_data
-from model import create_cnn_model
-from train import train_model
-from predict import predict_image
+import sys
+import os
+
+# Add the project's root directory to sys.path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+from src.data_preparation import load_cifar10_data
+from src.model import create_cnn_model
+from src.train import train_model
+from src.predict import predict_image
+
 
 @pytest.fixture
 def cifar10_data():

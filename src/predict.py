@@ -27,7 +27,6 @@ from tensorflow.keras.preprocessing import image as keras_image
 
 def predict_image(image_path):
 
-
     # Load the trained model
     model = load_model('model/cifar10_model.h5')
 
