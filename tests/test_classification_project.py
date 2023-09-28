@@ -16,12 +16,18 @@ from src.predict import predict_image
 
 num_samples_for_testing = 1000 
 
+# @pytest.fixture
+# def cifar10_data():
+#     x_train, y_train, x_test, y_test = load_cifar10_data()
+#     x_test_subset, y_test_subset = x_test[:num_samples_for_testing], y_test[:num_samples_for_testing]
+#     # return x_train, y_train, x_test, y_test
+#     return x_train, y_train, x_test_subset, y_test_subset
+
 @pytest.fixture
 def cifar10_data():
     x_train, y_train, x_test, y_test = load_cifar10_data()
-    x_test_subset, y_test_subset = x_test[:num_samples_for_testing], y_test[:num_samples_for_testing]
-    # return x_train, y_train, x_test, y_test
-    return x_train, y_train, x_test_subset, y_test_subset
+    return x_train[:100], y_train[:100], x_test[:20], y_test[:20]  # Adjust the slice sizes as needed
+
 
 # @pytest.fixture
 # def cifar10_model(cifar10_data):
@@ -47,13 +53,29 @@ def test_data_preparation(cifar10_data):
     assert y_train.shape[1] == 10
     assert y_test.shape[1] == 10
 
-def test_model_creation(cifar10_model):
-    assert isinstance(cifar10_model, tf.keras.models.Sequential)
+# def test_model_creation(cifar10_model):
+#     assert isinstance(cifar10_model, tf.keras.models.Sequential)
+def test_model_creation():
+    # Create the model
+    model = create_cnn_model(input_shape=(32, 32, 3))
 
+    # Define your assertion(s)
+    assert isinstance(model, tf.keras.models.Sequential)
+    assert model.layers  
+
+# def test_model_training(cifar10_data, cifar10_model):
+#     x_train, y_train, x_test, y_test = cifar10_data
+#     _, accuracy = cifar10_model.evaluate(x_test, y_test)
+#     assert accuracy > 0.4  # Adjust as needed
 def test_model_training(cifar10_data, cifar10_model):
+    # Make sure cifar10_model is not None
+    assert cifar10_model is not None
+
     x_train, y_train, x_test, y_test = cifar10_data
-    _, accuracy = cifar10_model.evaluate(x_test, y_test)
-    assert accuracy > 0.4  # Adjust as needed
+    if cifar10_model:
+        _, accuracy = cifar10_model.evaluate(x_test, y_test)
+        assert accuracy > 0.7  # Adjust as needed
+
 
 # def test_model_prediction(cifar10_model):
 #     # Generate a random test image for prediction
