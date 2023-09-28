@@ -24,14 +24,14 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements.txt
 
+    - name: Install coverage and pytest
+      run: |
+        pip install coverage 
+        pip install pytest
+        pip install codecov
+
     # - name: upgrade tensorflow 
     #   run: pip install --upgrade tensorflow
-
-    - name: install coverage
-      run: pip install coverage 
-
-    - name: install pytest
-      run: pip install pytest
 
     - name: Run tests with coverage
       run: python -m coverage run -m pytest
