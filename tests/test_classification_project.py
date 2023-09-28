@@ -18,12 +18,19 @@ def cifar10_data():
     x_train, y_train, x_test, y_test = load_cifar10_data()
     return x_train, y_train, x_test, y_test
 
+# @pytest.fixture
+# def cifar10_model(cifar10_data):
+#     x_train, y_train, x_test, y_test = cifar10_data
+#     model = create_cnn_model(x_train[0].shape)
+#     train_model(model, x_train, y_train,x_test, y_test, epochs=1, batch_size=64)
+#     #model = train_model()
+#     return model
 @pytest.fixture
 def cifar10_model(cifar10_data):
-    x_train, y_train, x_test, y_test = cifar10_data
-    model = create_cnn_model(x_train[0].shape)
-    train_model(model, x_train, y_train,x_test, y_test, epochs=1, batch_size=64)
-    #model = train_model()
+    # x_train, y_train, x_test, y_test = cifar10_data
+    # model = create_cnn_model(x_train[0].shape)
+    train_model()
+    model = train_model()
     return model
 
 def test_data_preparation(cifar10_data):
@@ -55,7 +62,8 @@ def test_model_training(cifar10_data, cifar10_model):
 #     assert 0 <= predicted_class < 10
 def test_model_prediction(cifar10_model):
     # Generate a smaller random test image for prediction
-    test_image = np.random.rand(1, 32, 32, 3).astype(np.float32)  # Use float32 data type
+    # test_image = np.random.rand(1, 32, 32, 3).astype(np.float32)  # Use float32 data type
+    test_image = np.random.rand(1, 32, 32, 3)
     predicted_class = predict_image(cifar10_model, test_image)
     assert 0 <= predicted_class < 10
 
