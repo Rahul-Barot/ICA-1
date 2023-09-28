@@ -22,7 +22,10 @@ jobs:
       run: python3 -m pip install --upgrade pip
 
     - name: Install dependencies
-      run: pip install -r requirements.txt
+      run: pip install -r requirements.txt--upgrade tensorflow
+
+    - name: upgrade tensorflow 
+      run: pip install 
 
     - name: install coverage
       run: pip install coverage 
